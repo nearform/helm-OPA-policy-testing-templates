@@ -33,3 +33,11 @@ deny[msg] {
 	not input.spec.template.spec.nodeSelector.agentpool = "user"
 	msg = sprintf("Deployment %s must declare agentpool nodeSelector as 'user' for node pool selection", [name])
 }
+
+## Optional, uncomment if required
+# deny[msg] {
+# 	kubernetes.is_deployment
+# 	not input.spec.template.spec.securityContext.runAsNonRoot
+
+# 	msg = sprintf("Containers must not run as root in Deployment %s", [name])
+# }
