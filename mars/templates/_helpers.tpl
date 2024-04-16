@@ -40,6 +40,8 @@ helm.sh/chart: {{ include "mars.chart" . }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
+app.kubernetes.io/component: {{ .Values.labels.component }}
+app.kubernetes.io/part-of: {{ .Values.labels.partOf }}
 {{- end }}
 
 {{/*
