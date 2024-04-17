@@ -105,7 +105,7 @@ violation[msg] {
 	msg = kubernetes.format(sprintf("The %s %s is mounting the Docker socket", [kubernetes.kind, kubernetes.name]))
 }
 
-
+# https://learnk8s.io/production-best-practices#application-development
 violation[msg] {
     kubernetes.is_deployment  # Ensure the resource is a Deployment
     kubernetes.containers[container] # Iterate over each container
