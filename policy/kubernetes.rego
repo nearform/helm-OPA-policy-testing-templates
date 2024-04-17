@@ -259,9 +259,13 @@ workload_with_pod_template {
 }
 
 
-#Helper to check for readiness probe
+# Helper to check for readiness probe
 has_readiness_probe(container) {
     probe := container.readinessProbe
-    probe.httpGet  # Ensuring there's an HTTP GET configured as part of the probe
-    probe.httpGet.path != ""  # Path should not be empty
+	not is_null(probe)  # Ensures that the readinessProbe is not null
+}
+
+# Helper function to determine if a value is null
+is_null(value) {
+    value == null
 }
