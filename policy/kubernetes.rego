@@ -257,3 +257,11 @@ workload_with_pod_template {
 workload_with_pod_template {
     is_daemonset
 }
+
+
+#Helper to check for readiness probe
+has_readiness_probe(container) {
+    probe := container.readinessProbe
+    probe.httpGet  # Ensuring there's an HTTP GET configured as part of the probe
+    probe.httpGet.path != ""  # Path should not be empty
+}
