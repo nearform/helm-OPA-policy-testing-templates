@@ -104,3 +104,11 @@ violation[msg] {
 	volume.hostpath.path = "/var/run/docker.sock"
 	msg = kubernetes.format(sprintf("The %s %s is mounting the Docker socket", [kubernetes.kind, kubernetes.name]))
 }
+
+# https://learnk8s.io/production-best-practices#application-development
+violation[msg] {
+    kubernetes.is_deployment  # Ensure the resource is a Deployment
+    kubernetes.containers[container] # Iterate over each container
+    not kubernetes.has_readiness_probe(container)  # Check if the readiness probe is missing
+    msg := kubernetes.format(sprintf("The '%s' has container '%s' missing a readinessProbe block configuration", [kubernetes.kind, container.name]))
+}

@@ -257,3 +257,15 @@ workload_with_pod_template {
 workload_with_pod_template {
     is_daemonset
 }
+
+
+# Helper to check for readiness probe
+has_readiness_probe(container) {
+    probe := container.readinessProbe
+	not is_null(probe)  # Ensures that the readinessProbe is not null
+}
+
+# Helper function to determine if a value is null
+is_null(value) {
+    value == null
+}
