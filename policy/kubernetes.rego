@@ -232,3 +232,28 @@ canonify_mem(orig) = new {
   re_match("^[0-9]+$", raw)
   new := to_number(raw) * mem_multiple(suffix)
 }
+
+
+required_deployment_labels {
+	input.metadata.labels["app.kubernetes.io/name"]
+	input.metadata.labels["app.kubernetes.io/instance"]
+	input.metadata.labels["app.kubernetes.io/version"]
+	input.metadata.labels["app.kubernetes.io/component"]
+	input.metadata.labels["app.kubernetes.io/part-of"]
+	input.metadata.labels["app.kubernetes.io/managed-by"]
+}
+
+
+required_deployment_selectors {
+	input.spec.selector.matchLabels["app.kubernetes.io/name"]
+	input.spec.selector.matchLabels["app.kubernetes.io/instance"]
+}
+
+# Helper to identify workloads with pod templates
+workload_with_pod_template {
+    is_deployment
+}
+
+workload_with_pod_template {
+    is_daemonset
+}

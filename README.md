@@ -1,5 +1,11 @@
 # helm-OPA-based-testing-templates
-Blueprint for OPA-based testing of Helm charts using the Conftest tool.
+
+This folder contains sample code for OPA based policy testing. It's organized in the following directories:
+
+- `mars`: Helm chart
+- `policies`: OPA policies
+
+The goal of this project is to provide a blueprint for OPA-based testing of Helm charts using the Conftest tool.
 
 Conftest uses the Rego language from [Open Policy Agent](https://www.openpolicyagent.org/) for writing the assertions. You can read more about Rego in [How do I write policies](https://www.openpolicyagent.org/docs/latest/policy-language/) in the Open Policy Agent documentation.
 
@@ -16,4 +22,6 @@ violation rules evaluates the same as deny rules, except they support returning 
 By default, Conftest looks for these rules in the main namespace, but this can be overriden with the --namespace flag or provided in the configuration file. To look in all namespaces, use the --all-namespaces flag.
 
 ### Running tests
-helm template `chart name` --set fullnameOverride=`repo_name/path_to_chart` | conftest test -
+Launch the following command from the `sample code` directory to run the policy tests against the sample Helm chart:
+
+``helm template "chart name" --set fullnameOverride="repo_name/path_to_chart" | conftest test -``

@@ -111,3 +111,8 @@ env:
   plain: {}
   # sensitive variables
   secret: {}
+
+# Default label settings for Kubernetes
+labels:
+  component: "eg database"      # Default component within the architecture
+  partOf: "eg wordpress"        # Default name of the higher level application
