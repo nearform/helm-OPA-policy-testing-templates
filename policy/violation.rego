@@ -112,3 +112,19 @@ violation[msg] {
     not kubernetes.has_readiness_probe(container)  # Check if the readiness probe is missing
     msg := kubernetes.format(sprintf("The '%s' has container '%s' missing a readinessProbe block configuration", [kubernetes.kind, container.name]))
 }
+
+# https://learnk8s.io/production-best-practices#application-development
+violation[msg] {
+    kubernetes.is_deployment
+    kubernetes.containers[container]
+    not kubernetes.has_liveness_probe(container)
+    msg := kubernetes.format(sprintf("%s in the %s %s is missing a livenessProbe block configuration", [container.name, kubernetes.kind, kubernetes.name]))
+}
+
+# https://learnk8s.io/production-best-practices#application-development
+violation[msg] {
+    kubernetes.is_deployment
+    kubernetes.containers[container]
+    container.readinessProbe == container.livenessProbe
+    msg := kubernetes.format(sprintf("%s in the %s %s has identical readinessProbe and livenessProbe block configurations", [container.name, kubernetes.kind, kubernetes.name]))
+}

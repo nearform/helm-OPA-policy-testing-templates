@@ -265,6 +265,12 @@ has_readiness_probe(container) {
 	not is_null(probe)  # Ensures that the readinessProbe is not null
 }
 
+# Helper to check for liveness probe
+has_liveness_probe(container) {
+    probe := container.livenessProbe
+	not is_null(probe)  # Ensures that the livenessProbe is not null
+}
+
 # Helper function to determine if a value is null
 is_null(value) {
     value == null
