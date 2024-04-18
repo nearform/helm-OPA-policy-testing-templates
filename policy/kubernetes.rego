@@ -304,7 +304,7 @@ resolve_registry(image) := "unknown registry" {
 
 # Helper to define what qualifies as a possible registry
 is_possible_registry(part) {
-    contains(part, ".")   # It's a registry if it contains a dot (e.g., 'example.com')
+    contains(part, ".")   # It's a registry if it contains a dot (e.g., 'docker.io', 'public.ecr.aws' )
 }
 
 is_possible_registry(part) {
