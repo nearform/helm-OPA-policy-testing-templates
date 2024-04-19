@@ -146,11 +146,3 @@ violation[msg] {
 	kubernetes.pod_replicas_lt_or_equal_one(replicas)
 	msg := kubernetes.format(sprintf("Deployment %s: replicas is %d. Replicas need to be more than 1 for High Availability guarantees", [kubernetes.name, replicas]))
 }
-
-# https://learnk8s.io/production-best-practices#application-development
-violation[msg] {
-	kubernetes.is_deployment
-	replicas := input.spec.replicas
-	kubernetes.pod_replicas_odd(replicas)
-	msg := kubernetes.format(sprintf("Deployment %s: replicas is %d. Replicas should have odd number for High Availability guarantees", [kubernetes.name, replicas]))
-}
