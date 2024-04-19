@@ -324,4 +324,10 @@ known_registry(registry) {
 # Add your known/trusted registeries here, for example, {'docker.io', 'quay.io', 'public.ecr.aws'}
 trusted_registries := {}
 
+pod_replicas_lt_or_equal_one(replicas) {
+	replicas <= 1
+}
 
+pod_replicas_odd(replicas) {
+	replicas % 2 == 0
+}
