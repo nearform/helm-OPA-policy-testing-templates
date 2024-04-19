@@ -321,6 +321,7 @@ known_registry(registry) {
 }
 
 # Set of Trusted registries
+# Add your known/trusted registeries here, for example, {'docker.io', 'quay.io', 'public.ecr.aws'}
 trusted_registries := {}
 
 
