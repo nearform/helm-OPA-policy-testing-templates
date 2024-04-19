@@ -275,3 +275,53 @@ has_liveness_probe(container) {
 is_null(value) {
     value == null
 }
+
+
+
+# Function to resolve the registry from an image string
+resolve_registry(image) := registry {
+    parts := split(image, "/")
+    
+    # Check if the number of parts is greater than 1 and if the first part could be a registry
+    count(parts) > 1
+    is_possible_registry(parts[0])
+    
+    # Assign the registry if conditions are met
+    registry := parts[0]
+}
+
+# If no conditions met, registry is 'unknown registry'
+resolve_registry(image) := "unknown registry" {
+    parts := split(image, "/")
+    not count(parts) > 1
+}
+
+resolve_registry(image) := "unknown registry" {
+    parts := split(image, "/")
+    count(parts) > 1
+    not is_possible_registry(parts[0])
+}
+
+# Helper to define what qualifies as a possible registry
+is_possible_registry(part) {
+    contains(part, ".")   # It's a registry if it contains a dot (e.g., 'docker.io', 'public.ecr.aws' )
+}
+
+is_possible_registry(part) {
+    part == "localhost"   # It's a registry if it's 'localhost' (common for local development)
+}
+
+is_possible_registry(part) {
+    contains(part, ":")   # It's a registry if it contains a colon, typically followed by a port number
+}
+
+# Helper function to determine if a registry is known and trusted
+known_registry(registry) {
+    registry = trusted_registries[_]
+}
+
+# Set of Trusted registries
+# Add your known/trusted registeries here, for example, {'docker.io', 'quay.io', 'public.ecr.aws'}
+trusted_registries := {}
+
+
