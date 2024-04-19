@@ -321,6 +321,6 @@ known_registry(registry) {
 }
 
 # Set of Trusted registries
-trusted_registries := {"registry.example.com", "quay.io", "localhost", "public.ecr.aws"}
+trusted_registries := {} # eg {"quay.io", "public.ecr.aws"}
 
 
