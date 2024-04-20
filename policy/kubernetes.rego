@@ -276,7 +276,11 @@ is_null(value) {
     value == null
 }
 
-
+# Helper to check secret env vars
+has_secret_env_var(container) {
+    secret_env_var := container.env.secret
+	not is_null(secret_env_var)
+}
 
 # Function to resolve the registry from an image string
 resolve_registry(image) := registry {
@@ -327,3 +331,4 @@ trusted_registries := {}
 pod_replicas_lt_or_equal_one(replicas) {
 	replicas <= 1
 }
+
