@@ -23,4 +23,4 @@ By default, Conftest looks for rules in the main namespace, but this can be over
 ### Running tests
 Launch the following command from the root directory to run the policy tests against the sample Helm chart:
 
-``helm template "chart name" --set fullnameOverride="repo_name/path_to_chart" | conftest test -``
+``helm template mars | conftest test -``
