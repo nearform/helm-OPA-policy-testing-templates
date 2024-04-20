@@ -18,7 +18,7 @@ Conftest looks for `deny`, `violation`, and `warn` rules. Rules can optionally b
 
 Violation rules evaluate the same way as deny rules, except they support returning structured data errors instead of just strings.
 
-By default, Conftest looks for rules in the main namespace, but this can be overriden with the --namespace flag or provided in the configuration file. To look in all namespaces, use the --all-namespaces flag.
+By default, Conftest looks for rules in the main namespace, but this can be overriden with the `--namespace` flag or provided in the configuration file. To look in all namespaces, use the `--all-namespaces` flag.
 
 ### Running tests
 Launch the following command from the `sample code` directory to run the policy tests against the sample Helm chart:
