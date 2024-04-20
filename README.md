@@ -15,7 +15,7 @@ Conftest uses the Rego language from [Open Policy Agent](https://www.openpolicya
 Policies by default should be placed in a directory called policy, but this can be overridden with the --policy flag.
 In the Policies directory, test files should be saved with a `.rego` filename extension.
 
-Conftest looks for deny, violation, and warn rules. Rules can optionally be suffixed with an underscore and an identifier, for example deny_myrule.
+Conftest looks for `deny`, `violation`, and `warn` rules. Rules can optionally be suffixed with an underscore and an identifier, for example `deny_myrule`.
 
 Violation rules evaluate the same way as deny rules, except they support returning structured data errors instead of just strings.
 
