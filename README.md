@@ -1,11 +1,10 @@
-# helm-OPA-based-testing-templates
+# helm-OPA-policy-testing-templates
 
-This folder contains sample code for OPA based policy testing. It's organized in the following directories:
+The goal of this project is to provide a blueprint for OPA policy testing of Helm Charts using the Conftest tool.
+This repository is organised in the following directories:
 
 - `mars`: Helm chart
 - `policies`: OPA policies
-
-The goal of this project is to provide a blueprint for OPA-based testing of Helm charts using the Conftest tool.
 
 Conftest uses the Rego language from [Open Policy Agent](https://www.openpolicyagent.org/) for writing the assertions. You can read more about Rego in [How do I write policies](https://www.openpolicyagent.org/docs/latest/policy-language/) in the Open Policy Agent documentation.
 
