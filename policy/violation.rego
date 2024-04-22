@@ -22,6 +22,20 @@ violation[msg] {
 # 	msg = kubernetes.format(sprintf("%s in the %s %s does not have a CPU limit set", [container.name, kubernetes.kind, kubernetes.name]))
 # }
 
+# https://kubesec.io/basics/containers-requests-limits-memory
+violation[msg] {
+	kubernetes.containers[container]
+	not container.requests.limits.memory
+	msg = kubernetes.format(sprintf("%s in the %s %s does not have requests memory limit set", [container.name, kubernetes.kind, kubernetes.name]))
+}
+
+# https://kubesec.io/basics/containers-requests-limits-cpu/
+# violation[msg] {
+# 	kubernetes.containers[container]
+# 	not container.requests.limits.cpu
+# 	msg = kubernetes.format(sprintf("%s in the %s %s does not have requests CPU limit set", [container.name, kubernetes.kind, kubernetes.name]))
+# }
+
 # https://kubesec.io/basics/containers-securitycontext-capabilities-add-index-sys-admin/
 violation[msg] {
 	kubernetes.containers[container]
