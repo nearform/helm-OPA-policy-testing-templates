@@ -146,3 +146,11 @@ violation[msg] {
 	kubernetes.pod_replicas_lt_or_equal_one(replicas)
 	msg := kubernetes.format(sprintf("Deployment %s: replicas is %d. Replicas need to be more than 1 for High Availability guarantees", [kubernetes.name, replicas]))
 }
+
+#https://kubesec.io/basics/containers-securitycontext-readonlyrootfilesystem-true/
+violation[msg] {
+	kubernetes.is_deployment
+	kubernetes.containers[container]
+	not container.securityContext.readOnlyRootFilesystem
+    msg := kubernetes.format(sprintf("%s in the %s %s does not have readOnlyRootFilesystem set to true", [container.name, kubernetes.kind, kubernetes.name]))
+}

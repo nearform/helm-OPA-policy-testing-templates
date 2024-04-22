@@ -258,7 +258,6 @@ workload_with_pod_template {
     is_daemonset
 }
 
-
 # Helper to check for readiness probe
 has_readiness_probe(container) {
     probe := container.readinessProbe
