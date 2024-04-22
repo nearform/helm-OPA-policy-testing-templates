@@ -19,3 +19,11 @@ warn[msg] {
 	container.has_secret_env_var
   	msg := kubernetes.format(sprintf("For %s in the %s %s, please ensure Secret resources are mounted into containers as volumes rather than passed in as environment variables.", [container.name, kubernetes.kind, kubernetes.name]))
 }
+
+# https://learnk8s.io/production-best-practices#application-development
+warn[msg] {
+	kubernetes.is_deployment
+  	kubernetes.containers[container]
+	not container.autoscaler.enabled
+  	msg := kubernetes.format(sprintf("For %s in the %s %s, if you are expecting varying workloads, please consider using an autoscaler", [container.name, kubernetes.kind, kubernetes.name]))
+}
