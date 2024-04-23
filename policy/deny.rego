@@ -5,8 +5,6 @@ import data.kubernetes
 name = input.metadata.name
 kind = input.metadata.kind
 
-
-
 deny[msg] {
 	kubernetes.is_deployment
 	not kubernetes.required_deployment_selectors

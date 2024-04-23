@@ -233,7 +233,6 @@ canonify_mem(orig) = new {
   new := to_number(raw) * mem_multiple(suffix)
 }
 
-
 required_deployment_labels {
 	input.metadata.labels["app.kubernetes.io/name"]
 	input.metadata.labels["app.kubernetes.io/instance"]
@@ -242,7 +241,6 @@ required_deployment_labels {
 	input.metadata.labels["app.kubernetes.io/part-of"]
 	input.metadata.labels["app.kubernetes.io/managed-by"]
 }
-
 
 required_deployment_selectors {
 	input.spec.selector.matchLabels["app.kubernetes.io/name"]
@@ -257,7 +255,6 @@ workload_with_pod_template {
 workload_with_pod_template {
     is_daemonset
 }
-
 
 # Helper to check for readiness probe
 has_readiness_probe(container) {

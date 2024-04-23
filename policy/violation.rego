@@ -152,7 +152,6 @@ violation[msg] {
 	msg := kubernetes.format(sprintf("Container '%s' in %s '%s' uses an untrusted image source: %s from registry: %s", [container.name, kubernetes.kind, input.metadata.name, container.image, registry]))
 }
 
-
 # https://learnk8s.io/production-best-practices#application-development
 violation[msg] {
 	kubernetes.is_deployment
