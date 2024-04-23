@@ -6,6 +6,10 @@ This repository is organised in the following directories:
 - `mars`: Helm chart
 - `policies`: OPA policies
 
+The idea is that you copy the policies folder into your repository and customise as appropriate.
+There are three categories of policies: `deny`, `violation`, and `warn`.
+Some policies have been commented out as they would not be appropriate in some cases.
+
 Conftest uses the Rego language from [Open Policy Agent](https://www.openpolicyagent.org/) for writing the assertions. You can read more about Rego in [How do I write policies](https://www.openpolicyagent.org/docs/latest/policy-language/) in the Open Policy Agent documentation.
 
 ## Usage
