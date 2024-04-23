@@ -143,7 +143,6 @@ violation[msg] {
     msg := kubernetes.format(sprintf("%s in the %s %s has identical readinessProbe and livenessProbe block configurations", [container.name, kubernetes.kind, kubernetes.name]))
 }
 
-
 violation[msg] {
 	kubernetes.is_deployment
 	kubernetes.containers[container]

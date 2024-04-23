@@ -41,11 +41,17 @@ Launch the following command from the root directory to run the policy tests aga
 
 4) Deployment must specify a serviceAccountName in the template
 
-5) Containers must not run as root in Deployment %s
+5) Containers must not run as root in Deployment
 
 **Violation**
 
+1) Missing readiness probe configuration
 
+2) Missing liveness probe configuration
+
+3) Identical readiness probe and liveness probe
+
+4) 
 
 
 **Warn**
