@@ -30,7 +30,6 @@ deny[msg] {
     msg = sprintf("%s must specify a serviceAccountName in the template", [kind])
 }
 
-## Optional, uncomment if required
 # deny[msg] {
 # 	kubernetes.is_deployment
 # 	not input.spec.template.spec.securityContext.runAsNonRoot
