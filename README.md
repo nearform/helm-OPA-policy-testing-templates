@@ -28,3 +28,29 @@ By default, Conftest looks for rules in the main namespace, but this can be over
 Launch the following command from the root directory to run the policy tests against the sample Helm chart:
 
 ``helm template mars | conftest test -``
+
+### Policies
+
+**Deny**
+
+1) Deployment %s must provide app/release labels for pod selectors
+
+2) Deployment %s must declare agentpool nodeSelector as 'user' for node pool selection
+
+3) Helm Chart must include Kubernetes recommended labels: https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/#labels
+
+4) Deployment must specify a serviceAccountName in the template
+
+5) Containers must not run as root in Deployment %s
+
+**Violation**
+
+
+
+
+**Warn**
+1) Default ServiceAccount automatically mounting into the file system of all Pods. 
+
+2) Secret resources are mounted into containers as volumes rather than passed in as environment variables
+
+3) Consider using an autoscaler for varying workloads
