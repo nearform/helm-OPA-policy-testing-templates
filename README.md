@@ -143,7 +143,7 @@ Find the policy definitions for the Warning rules here: [warn.rego](./policies/w
 
 ## Helper Functions in Rego Policies
 
-Helper functions significantly enhance the readability and maintainability of our Rego policies by abstracting complex queries. Centralizing common logic in functions such as `kubernetes.known_registry`, stored in `kubernetes.rego`, allows our policies to be more streamlined and adaptable. This approach ensures that updates necessitated by changes in Kubernetes APIs or best practices can be made with minimal adjustments, maintaining consistency and reducing the risk of errors.
+Helper functions significantly enhance the readability and maintainability of our Rego policies by abstracting complex queries. Centralizing common logic in functions such as `kubernetes.known_registry`, stored in [kubernetes.rego](./policies/kubernetes.rego), allows our policies to be more streamlined and adaptable. This approach ensures that updates necessitated by changes in Kubernetes APIs or best practices can be made with minimal adjustments, maintaining consistency and reducing the risk of errors.
 
 ### Example: Ensuring Use of Known Registries
 
