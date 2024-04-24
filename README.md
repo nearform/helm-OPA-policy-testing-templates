@@ -1,7 +1,7 @@
 # helm-OPA-policy-testing-templates
 
 The goal of this project is to provide a blueprint for OPA policy testing of Helm Charts using the Conftest tool.
-This document putlines the process for implementing OPA-based testing using Conftest in Helm charts, including customization and configuration steps for specific needs. OPA is used here to enforce best practices, organizational security and compliance requirements.
+This document outlines the process for implementing OPA-based testing using Conftest in Helm charts, including customization and configuration steps for specific needs, using a curated list of policies/rules. OPA is used here to enforce best practices, organizational security and compliance requirements.
 
 
 ## Introduction
