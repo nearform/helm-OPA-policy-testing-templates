@@ -166,6 +166,7 @@ violation[msg] {
   not kubernetes.known_registry(registry)  # Check if the registry is not known
   msg := kubernetes.format(sprintf("Container '%s' in Deployment '%s' uses an untrusted image source from registry: '%s'", [container.name, kubernetes.name, registry]))
 }
+```
 
 In this setup, kubernetes.resolve_registry extracts the registry part of the image path, and kubernetes.known_registry checks if this registry is in a list of approved registries. This separation of concerns makes the policies clearer and more focused on their specific roles—resolve_registry handles data extraction, while known_registry handles validation.
 
