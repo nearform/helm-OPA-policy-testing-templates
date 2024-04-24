@@ -42,7 +42,7 @@ Launch the following command from the root directory to run the policy tests aga
 
 
 ## Policy Descriptions
-### Find the policy definitions for the **Deny** rules here: [deny.rego](./policies/deny.rego)
+### Find the policy definitions for the **Deny** rules here: [deny.rego](./policy/deny.rego)
 ### Deny 1: App/Release Label Requirements
 
 - **Description**: Ensures that each Deployment specifies `app` and `release` labels for pod selectors, as required.
@@ -68,7 +68,7 @@ Launch the following command from the root directory to run the policy tests aga
 
 
 
-### Find the policy definitions for the **Violation** rules here: [deny.rego](./policies/violation.rego)
+### Find the policy definitions for the **Violation** rules here: [violation.rego](./policy/violation.rego)
 ### Violation 1: Use of Latest Tag
 
 - **Description**: Ensures that no container in a Kubernetes deployment uses the `latest` tag for its images.
@@ -201,7 +201,7 @@ Launch the following command from the root directory to run the policy tests aga
 - **Purpose**: Guarantees that applications remain available in the event of a failure or maintenance by running multiple instances.
 
 
-### Find the policy definitions for the **Warn** rules here: [warn.rego](./policies/deny.rego)
+### Find the policy definitions for the **Warn** rules here: [warn.rego](./policy/deny.rego)
 ### Warning 1: Automatic Service Account Mounting
 
 - **Description**: Warns if the default Kubernetes ServiceAccount is automatically mounted into the file system of all pods within a deployment.
