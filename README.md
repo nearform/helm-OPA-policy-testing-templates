@@ -75,4 +75,4 @@ For example, to test the output of the `mars` chart, use the following commands:
 helm template mars | conftest test -p policy/ -
 ```
 ## Helper Functions
-Rego policies utilize helper functions to streamline policy logic and reduce complexity. These functions are central to our approach, ensuring that updates necessitated by changes in Kubernetes APIs or operational best practices can be integrated with minimal adjustments. For a detailed discussion on these helper functions, including examples, please see the documentation in the [kubernetes.rego](./policy/helpers/kubernetes.rego) file.
+The curated policies in this repo utilize helper functions to streamline policy logic and reduce complexity. These functions are central to our approach, ensuring that updates necessitated by changes in Kubernetes APIs or operational best practices can be integrated with minimal adjustments. For a detailed discussion on these helper functions, including examples, please see the documentation [here](./policy/helpers/README.md) file.
