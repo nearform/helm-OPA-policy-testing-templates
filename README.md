@@ -1,20 +1,32 @@
 # OPA-based testing of Helm charts using the Conftest tool
 
-The goal of this project is to provide a blueprint for OPA policy testing of Helm Charts using the Conftest tool.
-This document outlines the process for implementing OPA-based testing using Conftest in Helm charts, including customization and configuration steps for specific needs, using a curated list of policies/rules. OPA is used here to enforce best practices, organizational security and compliance requirements.
+This document provides a blueprint for integrating OPA-based testing into Helm chart deployments using Conftest. It outlines the setup, customization, and execution of policy tests aimed at ensuring that Kubernetes configurations comply with defined best practices, security standards, and organizational compliance requirements.
 
 
 ## Introduction
-Conftest is a utility that helps to write tests against structured configuration data. When used with Helm charts, Conftest allows you to enforce policies using Open Policy Agent (OPA) to ensure your Kubernetes configurations meet the required standards before deployment as well as to to enforce best practices, organizational security and compliance requirements.
-Conftest uses the Rego language from [Open Policy Agent](https://www.openpolicyagent.org/) for writing the assertions. You can read more about Rego in [How do I write policies](https://www.openpolicyagent.org/docs/latest/policy-language/) in the Open Policy Agent documentation.
+Conftest is a powerful tool that enables developers to write tests against structured configuration data using policies. It is particularly useful with Helm charts for applying and enforcing policies written in Rego, the policy language developed by the [Open Policy Agent](https://www.openpolicyagent.org/) project. Rego allows for expressive, declarative policies that can easily assert the configuration of Kubernetes resources. You can read more about Rego in [How do I write policies](https://www.openpolicyagent.org/docs/latest/policy-language/) in the Open Policy Agent documentation.
 
-## Prerequisites
+
+## Why Use OPA with Helm Charts?
+[Open Policy Agent](https://www.openpolicyagent.org/) provides a high-level declarative language for expressing policies across different domains. For Kubernetes, OPA is particularly beneficial for:
+-   Validating configurations during the CI/CD process, preventing non-compliant resources from being deployed.
+-   Enforcing best practices and security policies that are crucial in maintaining regulatory compliance.
+-   Providing flexibility with its context-aware policy execution which allows detailed control over resource deployments based on the environment, user, time, etc.
+
+## How Conftest Helps
+Conftest helps to integrate these policies within the deployment pipeline for Helm charts:
+-   It parses the Helm chart templates and applies the Rego policies to the resulting Kubernetes manifests.
+-   Errors and violations are flagged before the deployment, ensuring compliance and reducing the risk of deployment failures.
+-   Conftest can be easily integrated into CI/CD pipelines, offering a seamless automation experience.
+
+
+## Usage
+
+### Prerequisites
 - Helm 3.x installed - https://helm.sh/docs/intro/install/
 - Conftest installed - https://www.conftest.dev/install/
 - Familiarity with writing OPA policies in Rego - https://www.openpolicyagent.org/docs/latest/#rego
 - Basic knowledge of Helm and Kubernetes
-
-## Usage
 
 This repository is organised in the following directories:
 
@@ -36,12 +48,14 @@ Violation rules evaluate the same way as deny rules, except they support returni
 By default, Conftest looks for rules in the main namespace, but this can be overriden with the `--namespace` flag or provided in the configuration file. To look in all namespaces, use the `--all-namespaces` flag.
 
 ### Running tests
-Launch the following command from the root directory to run the policy tests against the sample Helm chart:
+Use Conftest to test your Helm chart outputs against the defined Rego policies. This can be done by generating Kubernetes manifests with helm template and then running Conftest to evaluate these manifests.
 
 ``helm template mars | conftest test -``
 
 
 ### Policy Descriptions
+
+The following are lists of curated policies in this repository.
 
 #### Deny Rules
 Find the policy definitions for the Deny rules here: [deny.rego](./policies/deny.rego)
