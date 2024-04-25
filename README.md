@@ -11,7 +11,7 @@ Conftest is a powerful tool that enables developers to write tests against struc
 [Open Policy Agent](https://www.openpolicyagent.org/) provides a high-level declarative language for expressing policies across different domains. For Kubernetes, OPA is particularly beneficial for:
 -   Validating configurations during the CI/CD process, preventing non-compliant resources from being deployed.
 -   Enforcing best practices and security policies that are crucial in maintaining regulatory compliance.
--   Providing flexibility with its context-aware policy execution which allows detailed control over resource deployments based on the environment, user, time, etc.
+-   Providing flexibility with its context-aware policy execution which allows detailed control over resource deployments.
 
 ## How Conftest Helps
 Conftest helps to integrate these policies within the deployment pipeline for Helm charts:
