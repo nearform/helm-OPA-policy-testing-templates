@@ -19,60 +19,56 @@ Conftest helps to integrate these policies within the deployment pipeline for He
 -   Errors and violations are flagged before the deployment, ensuring compliance and reducing the risk of deployment failures.
 -   Conftest can be easily integrated into CI/CD pipelines, offering a seamless automation experience.
 
-## Usage
+## Usage Guide
 
 ### Prerequisites
-- Helm 3.x installed - https://helm.sh/docs/intro/install/
-- Conftest installed - https://www.conftest.dev/install/
-- Familiarity with writing OPA policies in Rego - https://www.openpolicyagent.org/docs/latest/#rego
-- Basic knowledge of Helm and Kubernetes
 
-This repository is organised in the following directories:
+Before you begin, ensure you have the following installed:
+- Helm 3.x: [Installation Guide](https://helm.sh/docs/intro/install/)
+- Conftest: [Installation Guide](https://www.conftest.dev/install/)
 
-- `mars`: Helm chart
-- `policies`: OPA policies
+You should also have:
+- An understanding of how to write OPA policies in Rego: [Rego Documentation](https://www.openpolicyagent.org/docs/latest/#rego)
+- Basic knowledge of Helm and Kubernetes.
 
-The idea is that you copy the policies folder into your repository and customise as appropriate.
-There are three categories of policies: `deny`, `violation`, and `warn`.
-Some policies have been commented out as they would not be appropriate in some cases.
+### Repository Structure
 
-## Policies
-The curated list of policies are categorized based on their enforcement actions - Deny, Violation, and Warning. Each category has its own folder containing the specific policies and their documentation.
+This repository is organized into key directories:
 
-### Policy Categories
-- [Deny Policies](./policy/deny/README.md)
-- [Violation Policies](./policy/violation/README.md)
-- [Warning Policies](./policy/warn/README.md)
+- `mars`: Contains the Helm chart to deploy.
+- `policies`: Includes the OPA policies for the Helm chart.
 
-For detailed information on each policy, refer to the README.md within each directory.
+To integrate these policies into your workflow, copy the `policies` directory into your repository and customize the policies to fit your requirements.
 
+### Policy Overview
 
-## Policy Evaluation Guide
+The policies in this repository are designed to enforce security and best practices in Kubernetes deployments. They are divided into three levels of enforcement, each with a dedicated directory and documentation:
 
-### Policy Location and Naming
+- **[Deny Policies](./policy/deny/README.md)**: These are mandatory rules that block deployments if non-compliant configurations are detected, ensuring strict adherence to defined standards.
 
-The standard location for storing policies is within a directory named `policy`. If you want to place your policies in a different directory, you can use the `--policy` flag to specify the new location.
+- **[Violation Policies](./policy/violation/README.md)**: Similar to deny policies, these rules identify configurations that don't meet best practices but also provide structured error messages, offering insights into how to resolve the issues.
 
-Each policy file should end with a `.rego` extension. This is the format Conftest expects for policy files.
+- **[Warning Policies](./policy/warn/README.md)**: These offer guidance on potential configuration problems with advisory warnings, helping you to proactively address issues that are not critical but could become significant.
 
-### Policy Rules
+To understand the specifics of each policy, please see the README.md files within the respective directories.
 
-Conftest specifically looks for rules named `deny`, `violation`, and `warn`. You can further customize these rule names by adding an identifier after an underscore, like so: `deny_resource_limits`.
+## How to Use
 
-`Violation` rules work similarly to `deny` rules but can return detailed error messages, not just simple text.
+To use the policies:
 
-### Rule Namespaces
+1. **Customize the Policies**: Some policies are commented out as they may not apply to all scenarios. These optional policies should be reviewed and enabled if they align with your specific requirements. The active policies are set to enforce best practices and security standards and should be treated as mandatory.
 
-By default, Conftest searches for rules within the `main` namespace. To change this, use the `--namespace` flag. If you have policies spread across multiple namespaces and want to include them all during testing, the `--all-namespaces` flag will do that.
+2. **Place the Policies**: The default directory for policies is `policy`. If you wish to store them elsewhere, specify the location using the `--policy` flag when running tests.
 
-### How to Run Tests
+3. **Naming Conventions**: Name policy files with a `.rego` extension, and prefix rule names according to their type (`deny`, `violation`, `warn`). For additional specificity, append an identifier, such as `deny_resource_limits`.
 
-To run tests on your Helm chart using Conftest, first create Kubernetes manifests with the `helm template` command. Then use Conftest to check these manifests against your Rego policies.
+### Testing Your Helm Charts
 
-For example, to test the output of the `mars` chart, use the following commands:
+Test the Helm charts with the following command:
 
 ```shell
 helm template mars | conftest test -p policy/ -
+
 ```
 ## Helper Functions
 The curated policies in this repo utilize helper functions to streamline policy logic and reduce complexity. These functions are central to our approach, ensuring that updates necessitated by changes in Kubernetes APIs or operational best practices can be integrated with minimal adjustments. For a detailed discussion on these helper functions, including examples, please see the documentation [here](./policy/helpers/README.md).
