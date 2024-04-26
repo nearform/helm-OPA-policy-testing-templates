@@ -35,10 +35,10 @@ You should also have:
 
 This repository is organized into key directories:
 
-- `mars`: Contains the Helm chart to deploy.
-- `policies`: Includes the OPA policies for the Helm chart.
+- `mars`: Contains the sample Helm chart to deploy.
+- `policy`: Includes the OPA policies for the Helm chart.
 
-To integrate these policies into your workflow, copy the `policies` directory into your repository and customize the policies to fit your requirements.
+To integrate these policies into your workflow, copy the `policy` directory into your repository and customize the policies to fit your requirements.
 
 ### Policy Overview
 
