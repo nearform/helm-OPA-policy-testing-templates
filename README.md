@@ -26,6 +26,7 @@ Conftest helps to integrate these policies within the deployment pipeline for He
 Before you begin, ensure you have the following installed:
 - Helm 3.x: [Installation Guide](https://helm.sh/docs/intro/install/)
 - Conftest: [Installation Guide](https://www.conftest.dev/install/)
+- Local Kubernetes Cluster: Although not strictly required for testing purposes, setting up a local Kubernetes cluster with tools like Minikube is advisable. This enables validation of the Helm charts in a Kubernetes environment. Find setup instructions for [Minikube](https://minikube.sigs.k8s.io/docs/start/).
 
 You should also have:
 - An understanding of how to write OPA policies in Rego: [Rego Documentation](https://www.openpolicyagent.org/docs/latest/#rego)
